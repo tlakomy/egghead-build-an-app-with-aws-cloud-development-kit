@@ -1,5 +1,6 @@
 exports.handler = async function (event: AWSLambda.APIGatewayEvent) {
     console.log("event: ", JSON.stringify(event, null, 2));
+    console.log("isProduction?", process.env.isProduction);
 
     return {
         statusCode: 200,
