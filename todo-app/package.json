@@ -21,10 +21,10 @@
         "typescript": "~3.7.2"
     },
     "dependencies": {
-        "@aws-cdk/aws-apigateway": "^1.33.0",
-        "@aws-cdk/aws-lambda": "^1.33.0",
+        "@aws-cdk/aws-apigateway": "^1.33.1",
+        "@aws-cdk/aws-lambda": "^1.33.1",
         "@aws-cdk/aws-s3": "^1.33.1",
-        "@aws-cdk/core": "^1.33.0",
+        "@aws-cdk/core": "^1.33.1",
         "@types/aws-lambda": "^8.10.48"
     }
 }

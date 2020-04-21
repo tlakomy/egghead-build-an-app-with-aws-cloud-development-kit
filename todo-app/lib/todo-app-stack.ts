@@ -20,6 +20,8 @@ export class TodoAppStack extends cdk.Stack {
             handler: helloLambda
         });
 
-        const logoBucket = new s3.Bucket(this, "LogoBucket", {});
+        const logoBucket = new s3.Bucket(this, "LogoBucket", {
+            publicReadAccess: true
+        });
     }
 }
