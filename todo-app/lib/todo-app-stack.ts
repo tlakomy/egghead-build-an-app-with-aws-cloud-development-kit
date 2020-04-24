@@ -4,10 +4,13 @@ import * as apiGateway from "@aws-cdk/aws-apigateway";
 import * as s3 from "@aws-cdk/aws-s3";
 import * as s3Notifications from "@aws-cdk/aws-s3-notifications";
 import * as s3Deployment from "@aws-cdk/aws-s3-deployment";
+import { TodoBackend } from "./todo-backend";
 
 export class TodoAppStack extends cdk.Stack {
     constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
+
+        const todoBackend = new TodoBackend(this, "TodoBackend");
 
         const helloLambda = new lambda.Function(this, "HelloLambda", {
             code: lambda.Code.fromAsset("lambda"),
