@@ -2,6 +2,7 @@ import * as cdk from "@aws-cdk/core";
 import * as lambda from "@aws-cdk/aws-lambda";
 import * as apiGateway from "@aws-cdk/aws-apigateway";
 import * as s3 from "@aws-cdk/aws-s3";
+import * as s3Notifications from "@aws-cdk/aws-s3-notifications";
 
 export class TodoAppStack extends cdk.Stack {
     constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -23,5 +24,10 @@ export class TodoAppStack extends cdk.Stack {
         const logoBucket = new s3.Bucket(this, "LogoBucket", {
             publicReadAccess: true
         });
+
+        logoBucket.addEventNotification(
+            s3.EventType.OBJECT_CREATED,
+            new s3Notifications.LambdaDestination(helloLambda)
+        );
     }
 }
