@@ -24,6 +24,7 @@
         "@aws-cdk/aws-apigateway": "^1.34.1",
         "@aws-cdk/aws-lambda": "^1.34.1",
         "@aws-cdk/aws-s3": "^1.34.1",
+        "@aws-cdk/aws-s3-deployment": "^1.34.1",
         "@aws-cdk/aws-s3-notifications": "^1.34.1",
         "@aws-cdk/core": "^1.34.1",
         "@types/aws-lambda": "^8.10.48"

@@ -3,6 +3,7 @@ import * as lambda from "@aws-cdk/aws-lambda";
 import * as apiGateway from "@aws-cdk/aws-apigateway";
 import * as s3 from "@aws-cdk/aws-s3";
 import * as s3Notifications from "@aws-cdk/aws-s3-notifications";
+import * as s3Deployment from "@aws-cdk/aws-s3-deployment";
 
 export class TodoAppStack extends cdk.Stack {
     constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -29,5 +30,10 @@ export class TodoAppStack extends cdk.Stack {
             s3.EventType.OBJECT_CREATED,
             new s3Notifications.LambdaDestination(helloLambda)
         );
+
+        new s3Deployment.BucketDeployment(this, "DeployLogo", {
+            destinationBucket: logoBucket,
+            sources: [s3Deployment.Source.asset("./assets")]
+        });
     }
 }
