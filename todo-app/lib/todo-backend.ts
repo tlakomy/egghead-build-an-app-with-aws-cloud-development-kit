@@ -20,5 +20,7 @@ export class TodoBackend extends cdk.Construct {
                 TABLE_NAME: todosTable.tableName
             }
         });
+
+        todosTable.grantReadWriteData(this.handler);
     }
 }
