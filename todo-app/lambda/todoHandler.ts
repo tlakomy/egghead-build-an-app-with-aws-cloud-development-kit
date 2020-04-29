@@ -41,6 +41,23 @@ const addTodoItem = async (data: { todo: string; id: string }) => {
     return todo;
 };
 
+const deleteTodoItem = async (data: { id: string }) => {
+    const { id } = data;
+
+    if (id && id !== "") {
+        await dynamo
+            .delete({
+                TableName: tableName,
+                Key: {
+                    id
+                }
+            })
+            .promise();
+    }
+
+    return id;
+};
+
 exports.handler = async function (event: AWSLambda.APIGatewayEvent) {
     try {
         const { httpMethod, body: requestBody } = event;
@@ -62,6 +79,15 @@ exports.handler = async function (event: AWSLambda.APIGatewayEvent) {
             return todo
                 ? createResponse(`${todo} added to the database`)
                 : createResponse("Todo is missing", 500);
+        }
+
+        if (httpMethod === "DELETE") {
+            const id = await deleteTodoItem(data);
+            return id
+                ? createResponse(
+                      `Todo item with an id of ${id} deleted from the database`
+                  )
+                : createResponse("ID is missing", 500);
         }
 
         return createResponse(
