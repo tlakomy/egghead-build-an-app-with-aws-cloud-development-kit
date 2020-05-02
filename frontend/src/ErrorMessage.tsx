@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const Error = styled.div`
+const Error = styled.main`
+    padding: 3rem;
     font-size: 2.4em;
     text-align: center;
     color: red;
@@ -10,7 +11,7 @@ const Error = styled.div`
 const ErrorMessage = () => {
     return (
         <Error>
-            Whoops, something is broken - check the console for details
+            <h1>Whoops, something is broken - check the console for details</h1>
         </Error>
     );
 };
