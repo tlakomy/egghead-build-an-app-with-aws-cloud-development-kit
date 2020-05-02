@@ -107,7 +107,7 @@ const App = () => {
         if (!apiEndpoint) return;
         fetch(apiEndpoint, {
             method: "POST",
-            body: JSON.stringify(newTodo)
+            body: JSON.stringify(newTodo),
         });
 
         if (inputElement.current) {
@@ -134,9 +134,9 @@ const App = () => {
             if (!apiEndpoint) return;
             fetch(apiEndpoint, {
                 method: "DELETE",
-                body: JSON.stringify({ id })
+                body: JSON.stringify({ id }),
             });
-            setTodos(todos.filter(todo => todo.id !== id));
+            setTodos(todos.filter((todo) => todo.id !== id));
         }
     };
 
@@ -162,7 +162,10 @@ const App = () => {
             ) : (
                 <TodoList todos={todos} deleteTodo={deleteTodo} />
             )}
-            <Logo src="" alt="Egghead logo" />
+            <Logo
+                src="https://todoappstack-logobucketeb73fe35-onje3iagk377.s3.amazonaws.com/egghead-logo.png"
+                alt="Egghead logo"
+            />
         </Wrapper>
     );
 };

@@ -1,5 +1,4 @@
 import * as cdk from "@aws-cdk/core";
-import * as lambda from "@aws-cdk/aws-lambda";
 import * as apiGateway from "@aws-cdk/aws-apigateway";
 import * as s3 from "@aws-cdk/aws-s3";
 import * as s3Deployment from "@aws-cdk/aws-s3-deployment";
@@ -22,6 +21,10 @@ export class TodoAppStack extends cdk.Stack {
         new s3Deployment.BucketDeployment(this, "DeployLogo", {
             destinationBucket: logoBucket,
             sources: [s3Deployment.Source.asset("./assets")]
+        });
+
+        new cdk.CfnOutput(this, "LogoPath", {
+            value: `https://${logoBucket.bucketDomainName}/egghead-logo.png`
         });
     }
 }
