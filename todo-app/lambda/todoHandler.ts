@@ -11,6 +11,10 @@ const createResponse = (
 ) => {
     return {
         statusCode,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "OPTIONS,GET,POST,DELETE"
+        },
         body: JSON.stringify(body, null, 2)
     };
 };
@@ -62,6 +66,10 @@ const deleteTodoItem = async (data: { id: string }) => {
 exports.handler = async function (event: AWSLambda.APIGatewayEvent) {
     try {
         const { httpMethod, body: requestBody } = event;
+
+        if (httpMethod === "OPTIONS") {
+            return createResponse("OK");
+        }
 
         if (httpMethod === "GET") {
             const response = await getAllTodos();
