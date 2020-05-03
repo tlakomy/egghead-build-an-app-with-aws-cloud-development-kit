@@ -26,5 +26,19 @@ export class TodoAppStack extends cdk.Stack {
         new cdk.CfnOutput(this, "LogoPath", {
             value: `https://${logoBucket.bucketDomainName}/egghead-logo.png`
         });
+
+        const websiteBucket = new s3.Bucket(this, "WebsiteBucket", {
+            publicReadAccess: true,
+            websiteIndexDocument: "index.html"
+        });
+
+        new s3Deployment.BucketDeployment(this, "DeployWebsite", {
+            destinationBucket: websiteBucket,
+            sources: [s3Deployment.Source.asset("../frontend/build")]
+        });
+
+        new cdk.CfnOutput(this, "WebsiteAddress", {
+            value: websiteBucket.bucketWebsiteUrl
+        });
     }
 }

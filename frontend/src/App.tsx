@@ -11,6 +11,7 @@ const Wrapper = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     margin: 0 auto;
     width: 50rem;
     max-width: 80vw;
